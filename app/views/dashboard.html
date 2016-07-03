@@ -1,6 +1,5 @@
 <br>
 <p class="subheader" align="center">List all campaigns</p>
-<!-- <a href="#" data-toggle="tooltip" title="Title Here" class="linky">Hyperlink Text</a> -->
 <input type="text" ng-model="search" class="form-control" placeholder="Search campaigns">
 <br>
 <br>
@@ -8,11 +7,13 @@
     <!-- {{list}} -->
 
     <div dir-paginate="item in list | filter:search | itemsPerPage: 10 as ha" pagination-id="all">
+            <span class="glyphicon glyphicon-remove" style="top:0.23em;padding-top:3px;" ng-click="deleteCampaign(item.id)"></span>
+            &nbsp;&nbsp;
             <kbd>{{item.id}}</kbd> &nbsp;&nbsp;
             {{item.redirect_url}}
-
-            <span ng-repeat='key in item.platform'>
-            </span>
+            <!-- <a href="" >[remove]</a> -->
+            <!-- <span ng-repeat='key in item.platform'>
+            </span> -->
 
 
     </div>
@@ -23,7 +24,10 @@
 
 </div>
 
-
+<br><br>
+<p align="center">
+    <a class="btn btn-danger btn abut" href="" ng-click="getAll()">Update</a>
+</p>
 
 
 <br><br>
@@ -78,7 +82,7 @@
 <div class="center-table">
     <!-- {{list}} -->
 
-    <div dir-paginate="item in listByPlatform | filter:search | itemsPerPage: 10 as yo" pagination-id="search">
+    <div dir-paginate="item in listByPlatform | itemsPerPage: 10 as yo" pagination-id="search">
             <kbd>{{item.id}}</kbd> &nbsp;&nbsp;
             {{item.redirect_url}}
 

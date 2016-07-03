@@ -63,6 +63,15 @@ angular.module('frontendApp')
           });
       };
 
+      $scope.deleteCampaign = function (id) {
+        var url="http://127.0.0.1:8080/_ah/api/linky/v1/campaign/delete?campaign=" + id;
+        $http.get(url).success(function(data) {
+              if (data.status === "OK") {
+                  $scope.getAll();
+              }
+        });
+      }
+
 
 
   }]);

@@ -1,0 +1,99 @@
+<br>
+<p class="subheader" align="center">List all campaigns</p>
+<!-- <a href="#" data-toggle="tooltip" title="Title Here" class="linky">Hyperlink Text</a> -->
+<input type="text" ng-model="search" class="form-control" placeholder="Search campaigns">
+<br>
+<br>
+<div class="center-table">
+    <!-- {{list}} -->
+
+    <div dir-paginate="item in list | filter:search | itemsPerPage: 10 as ha" pagination-id="all">
+            <kbd>{{item.id}}</kbd> &nbsp;&nbsp;
+            {{item.redirect_url}}
+
+            <span ng-repeat='key in item.platform'>
+            </span>
+
+
+    </div>
+    <div class="pagin">
+      <dir-pagination-controls max-size="7" direction-links="true" pagination-id="all"></dir-pagination-controls>
+    </div>
+    <p ng-if="ha.length==0" class="">Nothing to show :)<br></p>
+
+</div>
+
+
+
+
+<br><br>
+<p class="subheader" align="center">Add campaign</p>
+<p class="alert alert-info" role="alert" ng-show="campaign_ready==true" align="center">
+    Success! <br>
+</p>
+<div class="input-group">
+  <span class="input-group-addon">
+      <span class="glyphicon glyphicon-globe"></span>
+  </span>
+  <input type="text" class="form-control" placeholder="Link URL" ng-model="campaign.redirect_url">
+
+</div>
+<br>
+<div ng-repeat="p in platform">
+    <div class="input-group">
+
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-record"></span>
+        </span>
+        <input type="text" class="form-control" placeholder="platform" ng-model="p.name">
+        <span class="input-group-addon" ng-show="$last">
+            <span class="glyphicon glyphicon-remove" ng-click="popPlatform()"></span>
+        </span>
+    </div>
+    <br>
+</div>
+
+<br>
+<div align="center">
+    <a href="" ng-click="addPlatform()" class="linky">Add platform</a> &nbsp;&nbsp;&nbsp;
+    <a class="btn btn-success btn abut" href="" ng-click="setPlatforms()">Submit</a>
+    &nbsp;&nbsp;&nbsp;
+    <a href="" ng-click="clearCampaign()" class="linky">Clear form</a> &nbsp;&nbsp;&nbsp;
+</div>
+
+<br>
+<br>
+<br><br>
+<p class="subheader" align="center">Filter campaings by platform</p>
+
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-record"></span></span>
+  <input type="text" class="form-control" placeholder="platform" ng-model="plat">
+  <span class="input-group-btn">
+    <button class="btn btn-default abut" type="button" ng-click="searchByPlatform()">Search</button>
+  </span>
+</div>
+
+<br>
+<div class="center-table">
+    <!-- {{list}} -->
+
+    <div dir-paginate="item in listByPlatform | filter:search | itemsPerPage: 10 as yo" pagination-id="search">
+            <kbd>{{item.id}}</kbd> &nbsp;&nbsp;
+            {{item.redirect_url}}
+
+            <span ng-repeat='key in item.platform'>
+            </span>
+
+
+    </div>
+    <div class="pagin">
+      <dir-pagination-controls max-size="7" direction-links="true" pagination-id="search"></dir-pagination-controls>
+    </div>
+    <p ng-if="yo.length==0" class="">Nothing to show :)<br></p>
+
+</div>
+
+<br>
+<br>
+<br>

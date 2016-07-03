@@ -1,0 +1,151 @@
+.navs {
+    font-family: 'Neucha', cursive;
+    font-size: 1.1em;
+    text-align: center;
+    margin:auto;
+    width: 100%;
+}
+
+.logos {
+    margin-top: 0.45em;
+    margin-left: 6em;
+    margin-right: 1em;
+    font-size: 1.9em;
+    color: rgb(92, 184, 92);
+}
+
+.logoss {
+    margin-top: 0.45em;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 5em;
+    color: rgb(92, 184, 92);
+}
+
+.jumbos {
+    font-family: 'Lobster', cursive;
+}
+
+.lead {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+h4 {
+    font-family: 'Neucha', cursive;
+}
+
+p {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.sub {
+    font-size: 1.2em;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+@media only screen and (max-width : 768px) {
+       .header {
+           padding: 0;
+       }
+
+       .logos {
+           margin-left: 1em;
+       }
+       .container > .navbar-header,
+       .container > .navbar-collapse
+       {
+          margin-right: 0px;
+          margin-left: 0px;
+       }
+
+}
+
+input[type="text"] {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.subheader {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 700;
+    font-variant: normal;
+    font-size: 1.2em;
+}
+
+input[type="range"] {
+    font-family: 'Open Sans Condensed', sans-serif;
+    width: 50%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+.pad-10px-left {
+    /*padding-left: 30px;*/
+    text-align: center;
+}
+
+.percentage {
+    width: 25px;
+}
+
+.linky:hover, .linky:visited, .linky:link {
+    text-decoration: none;
+}
+
+.abut {
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.pagin {
+    text-align: center;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 0.9em
+}
+
+.pagination > li > a, .pagination > li > span {
+    border: none;
+}
+
+.center-table {
+    margin: 0 auto;
+    display: table;
+}
+
+.btn_grp {
+    text-align: center;
+}
+.btn_grp a {
+    margin-bottom: .5em;
+}
+
+.player {
+    background: #e1f2e1;
+    width: 100%;
+    padding: 10px 0px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.modal-header {
+    background: #d6d6d6;
+}
+
+.modal-header .close {
+    margin-top: 0px;
+}
+
+.modal-title {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.modal-body input[type="text"] {
+    /*width: 350px;*/
+    height: 30px;
+
+}
+
+.radio label {
+    font-family: 'Open Sans Condensed', sans-serif;
+}

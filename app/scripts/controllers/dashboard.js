@@ -10,12 +10,10 @@
 angular.module('frontendApp')
   .controller('DashboardCtrl', ['$scope','$http', function ($scope, $http) {
       $scope.list = [];
-      var url="http://localhost:8080/_ah/api/linky/v1/campaign/getAll";
       $scope.getAll = function () {
+          var url="http://127.0.0.1:8080/_ah/api/linky/v1/campaign/getAll";
           $http.get(url).success(function(data) {
-                //$scope.list = data.items;
                 angular.copy(data.items, $scope.list);
-                console.log(data);
           });
       };
 
@@ -42,7 +40,7 @@ angular.module('frontendApp')
               }
           }
 
-          $http.post("http://localhost:8080/_ah/api/linky/v1/campaign/add", $scope.campaign).success(function(data) {
+          $http.post("http://127.0.0.1:8080/_ah/api/linky/v1/campaign/add", $scope.campaign).success(function(data) {
               if (data.status === "OK") {
                   $scope.campaign_ready = true;
                   $scope.getAll();
@@ -59,9 +57,8 @@ angular.module('frontendApp')
 
       $scope.searchByPlatform = function () {
           $scope.listByPlatform = [];
-          var url = "http://localhost:8080/_ah/api/linky/v1/campaign/findByPlatform" + "?platform=" + $scope.plat;
+          var url = "http://127.0.0.1:8080/_ah/api/linky/v1/campaign/findByPlatform" + "?platform=" + $scope.plat;
           $http.get(url).success(function(data) {
-                console.log(data);
                 angular.copy(data.items, $scope.listByPlatform);
           });
       };

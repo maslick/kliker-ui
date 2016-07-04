@@ -31,9 +31,6 @@ module.exports = function(config) {
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/angularUtils-pagination/dirPagination.js',
       'bower_components/angular-ui-select/dist/select.js',
-      'bower_components/sifter/sifter.js',
-      'bower_components/microplugin/src/microplugin.js',
-      'bower_components/selectize/dist/js/selectize.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

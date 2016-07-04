@@ -1,9 +1,4 @@
 <p>1. Select a campaign </p>
-<!-- {{list}} -->
-<!--
-<div ng-repeat="item in platformsList track by $index">
-    {{item}}
-</div> -->
 
 <ui-select ng-model="campaign.value">
     <ui-select-match placeholder="Enter an address...">
@@ -41,7 +36,7 @@
 <br>
 
 <p>3. Test endpoint </p>
-<a ng-show="platform.value.name && campaign.value.id" href="http://localhost:8080/_ah/spi/redirectos?platform={{platform.value.name}}&campaign={{campaign.value.id}}" target="_blank" class="linky">Test link (will open in new tab)</a>
+<a ng-show="platform.value.name && campaign.value.id" href="http://127.0.0.1:8080/_ah/spi/redirectos?platform={{platform.value.name}}&campaign={{campaign.value.id}}" target="_blank" class="linky">Test link (will open in new tab)</a>
 <br>
 <br>
 <br>

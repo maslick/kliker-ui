@@ -1,3 +1,7 @@
+<br>
+<br>
+<p class="subheader">1. Backend URL (leave blank in production)</p>
+
 <div class="input-group">
   <span class="input-group-addon">
       <span class="glyphicon glyphicon-globe"></span>
@@ -6,29 +10,35 @@
 </div>
 
 <br>
+<br>
 
-
+<p class="subheader">2. Admin credentials</p>
 <div class="input-group">
   <span class="input-group-addon">
-      <span class="glyphicon glyphicon-globe"></span>
+      <span class="glyphicon glyphicon-user"></span>
   </span>
   <input type="text" class="form-control" placeholder="username" ng-model="username_new">
 </div>
 
 <br>
-
 <div class="input-group">
   <span class="input-group-addon">
-      <span class="glyphicon glyphicon-globe"></span>
+      <span class="glyphicon glyphicon-hand-right"></span>
   </span>
-  <input type="text" class="form-control" placeholder="Link URL" ng-model="password_new">
+  <input type="text" class="form-control" placeholder="password" ng-model="password_new">
 </div>
 
 <br>
 
 <br>
+<p align="center">
+    <a class="btn btn-success btn abut href="" ng-click="setPrefs()">Apply new settings</a>
+</p>
+<br>
+<p class="alert alert-info" role="alert" align="center" ng-if="status">
+    OK.
+</p>
 
-<a class="btn btn-success btn abut href="" ng-click="setPrefs()">Apply</a>
 <br>
 
 <br>

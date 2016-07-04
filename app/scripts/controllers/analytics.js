@@ -13,6 +13,8 @@ angular.module('frontendApp')
     $scope.username = settings.getConfig().username;
     $scope.password = settings.getConfig().password;
 
+    $http.defaults.headers.common.Authorization = 'Basic ' + btoa($scope.username + ":" + $scope.password);
+
     $scope.getAll = function () {
         var url = $scope.backend_addr + "/_ah/api/linky/v1/campaign/getAll";
         $http.get(url).success(function(data) {

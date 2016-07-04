@@ -13,6 +13,7 @@ angular.module('frontendApp')
       $scope.username = settings.getConfig().username;
       $scope.password = settings.getConfig().password;
 
+      $http.defaults.headers.common.Authorization = 'Basic ' + btoa($scope.username + ":" + $scope.password);
 
       $scope.list = [];
       $scope.getAll = function () {

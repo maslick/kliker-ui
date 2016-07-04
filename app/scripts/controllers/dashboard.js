@@ -8,10 +8,15 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('DashboardCtrl', ['$scope','$http', function ($scope, $http) {
+  .controller('DashboardCtrl', ['$scope','$http', 'settings', function ($scope, $http, settings) {
+      $scope.backend_addr = settings.getConfig().url;
+      $scope.username = settings.getConfig().username;
+      $scope.password = settings.getConfig().password;
+
+
       $scope.list = [];
       $scope.getAll = function () {
-          var url="http://127.0.0.1:8080/_ah/api/linky/v1/campaign/getAll";
+          var url=$scope.backend_addr + "/_ah/api/linky/v1/campaign/getAll";
           $http.get(url).success(function(data) {
                 angular.copy(data.items, $scope.list);
           });
@@ -40,7 +45,7 @@ angular.module('frontendApp')
               }
           }
 
-          $http.post("http://127.0.0.1:8080/_ah/api/linky/v1/campaign/add", $scope.campaign).success(function(data) {
+          $http.post($scope.backend_addr + "/_ah/api/linky/v1/campaign/add", $scope.campaign).success(function(data) {
               if (data.status === "OK") {
                   $scope.campaign_ready = true;
                   $scope.getAll();
@@ -57,20 +62,20 @@ angular.module('frontendApp')
 
       $scope.searchByPlatform = function () {
           $scope.listByPlatform = [];
-          var url = "http://127.0.0.1:8080/_ah/api/linky/v1/campaign/findByPlatform" + "?platform=" + $scope.plat;
+          var url = $scope.backend_addr + "/_ah/api/linky/v1/campaign/findByPlatform" + "?platform=" + $scope.plat;
           $http.get(url).success(function(data) {
                 angular.copy(data.items, $scope.listByPlatform);
           });
       };
 
       $scope.deleteCampaign = function (id) {
-        var url="http://127.0.0.1:8080/_ah/api/linky/v1/campaign/delete?campaign=" + id;
+        var url = $scope.backend_addr + "/_ah/api/linky/v1/campaign/delete?campaign=" + id;
         $http.get(url).success(function(data) {
               if (data.status === "OK") {
                   $scope.getAll();
               }
         });
-      }
+      };
 
 
 

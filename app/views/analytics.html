@@ -1,7 +1,7 @@
-<p>1. Select a campaign </p>
+<p>1. Select campaign </p>
 
 <ui-select ng-model="campaign.value">
-    <ui-select-match placeholder="Enter an address...">
+    <ui-select-match placeholder="Enter address...">
         <span ng-bind="$select.selected.redirect_url"></span>
     </ui-select-match>
     <ui-select-choices repeat="item in (list | filter: $select.search) track by item.id">
@@ -35,22 +35,22 @@
 </p>
 <br>
 
-<p>3. Test endpoint </p>
+<p>3. Test link</p>
 <a ng-show="platform.value.name && campaign.value.id" href="{{backend_addr}}/_ah/spi/redirectos?platform={{platform.value.name}}&campaign={{campaign.value.id}}" target="_blank" class="linky">Test link (will open in new tab)</a>
 <br>
 <br>
 <br>
 <p>4. Get analytics </p>
-<p align="center">
-    <a class="btn btn-success btn abut" href="" ng-click="getClicksByPlatform(platform.value.name)">Check clicks based on platform</a>
-    <a class="btn btn-info btn abut" href="" ng-click="getClicksByPlatformAndCampaign(platform.value.name,campaign.value.id)">Check clicks based on platform and campaign</a>
-</p>
-<br>
+
 <p class="alert alert-success" role="alert" align="center">
     Based on a given platform: {{counterByPlatform}} clicks <br>
 </p>
 <p class="alert alert-info" role="alert" align="center">
     Based on given platform and campaign: {{counterByPlatformAndCampaign}} clicks
+</p>
+<p align="center">
+    <a class="btn btn-success btn abut" href="" ng-click="getClicksByPlatform(platform.value.name)">Check clicks based on platform</a>
+    <a class="btn btn-info btn abut" href="" ng-click="getClicksByPlatformAndCampaign(platform.value.name,campaign.value.id)">Check clicks based on platform and campaign</a>
 </p>
 
 

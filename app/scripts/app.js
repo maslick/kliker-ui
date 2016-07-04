@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'angularUtils.directives.dirPagination',
-    'ui.select'
+    'ui.select',
+    'ngProgress'
   ])
   .config(function ($routeProvider) {
     $routeProvider

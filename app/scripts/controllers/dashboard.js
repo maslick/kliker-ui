@@ -13,34 +13,14 @@ angular.module('frontendApp')
               '$http',
               'settings',
               'ngProgressFactory',
-              '$window',
-              function ($scope, $http, settings, ngProgressFactory, $window) {
+              'notification',
+              function ($scope, $http, settings, ngProgressFactory, notification) {
 
       $scope.backend_addr = settings.getConfig().url;
       $scope.username = settings.getConfig().username;
       $scope.password = settings.getConfig().password;
 
       $scope.progressbar = ngProgressFactory.createInstance();
-      var Snarl = $window.Snarl;
-      var timeout = 8000;
-
-      var err404 = function () {
-          Snarl.addNotification({
-              title: "Cannot connect",
-              text: "Try again later or change backend URL",
-              icon: '<i class="glyphicon glyphicon-thumbs-down"></i>',
-              timeout: timeout
-          });
-      };
-
-      var err401 = function () {
-          Snarl.addNotification({
-              title: "Unauthorized",
-              text: "Change admin credentials in the prefs",
-              icon: '<i class="glyphicon glyphicon-thumbs-down"></i>',
-              timeout: timeout
-          });
-      };
 
       $http.defaults.headers.common.Authorization = 'Basic ' + btoa($scope.username + ":" + $scope.password);
 
@@ -55,10 +35,10 @@ angular.module('frontendApp')
           function(error) {
                 $scope.progressbar.complete();
                 if (error.status == "401") {
-                    err401();
+                    notification.err401();
                 }
                 else {
-                    err404();
+                    notification.err404();
                 }
           });
       };
@@ -87,21 +67,27 @@ angular.module('frontendApp')
           }
 
           $scope.progressbar.start();
-          $http.post($scope.backend_addr + "/_ah/api/linky/v1/campaign/add", $scope.campaign).success(function(data) {
-              if (data.status === "OK") {
-                  $scope.campaign_ready = true;
-                  $scope.progressbar.complete();
-                  $scope.getAll();
-              }
-          }).error(function(data) {
+          $http.post($scope.backend_addr + "/_ah/api/linky/v1/campaign/add", $scope.campaign).then(function(response) {
+                if (response.data.status === "OK") {
+                    notification.ok("Success","New campaign added");
+                    $scope.progressbar.complete();
+                    $scope.getAll();
+                }
+            },
+            function(error) {
               $scope.progressbar.complete();
-          });
+              if (error.status == "401") {
+                  notification.err401();
+              }
+              else {
+                  notification.err404();
+              }
+            });
       };
 
       $scope.clearCampaign = function() {
           $scope.campaign = {};
           $scope.platform = [{}];
-          $scope.campaign_ready = false;
       };
 
 
@@ -109,25 +95,38 @@ angular.module('frontendApp')
           $scope.progressbar.start();
           $scope.listByPlatform = [];
           var url = $scope.backend_addr + "/_ah/api/linky/v1/campaign/findByPlatform" + "?platform=" + $scope.plat;
-          $http.get(url).success(function(data) {
-                angular.copy(data.items, $scope.listByPlatform);
+          $http.get(url).then(function(response) {
+                angular.copy(response.data.items, $scope.listByPlatform);
                 $scope.progressbar.complete();
-          }).error(function(data) {
+          },function(error) {
                 $scope.progressbar.complete();
+                if (error.status == "401") {
+                    notification.err401();
+                }
+                else {
+                    notification.err404();
+                }
           });
       };
 
       $scope.deleteCampaign = function (id) {
-        $scope.progressbar.start();
-        var url = $scope.backend_addr + "/_ah/api/linky/v1/campaign/delete?campaign=" + id;
-        $http.get(url).success(function(data) {
-              $scope.progressbar.complete();
-              if (data.status === "OK") {
-                  $scope.getAll();
-              }
-        }).error(function(data){
-              $scope.progressbar.complete();
-        });
+          $scope.progressbar.start();
+          var url = $scope.backend_addr + "/_ah/api/linky/v1/campaign/delete?campaign=" + id;
+          $http.get(url).then(function(response) {
+                $scope.progressbar.complete();
+                if (response.data.status === "OK") {
+                    $scope.getAll();
+                    notification.ok("Success","Campaign deleted");
+                }
+          },function(error){
+                $scope.progressbar.complete();
+                if (error.status == "401") {
+                    notification.err401();
+                }
+                else {
+                    notification.err404();
+                }
+          });
       };
 
 

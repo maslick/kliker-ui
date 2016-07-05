@@ -35,7 +35,7 @@
 </p>
 <br>
 
-<p>3. Test link</p>
+<p>3. Click on the link to increment the counter</p>
 <a ng-show="platform.value.name && campaign.value.id" href="{{backend_addr}}/_ah/spi/redirectos?platform={{platform.value.name}}&campaign={{campaign.value.id}}" target="_blank" class="linky">Test link (will open in new tab)</a>
 <br>
 <br>
@@ -49,8 +49,8 @@
     Based on given platform and campaign: {{counterByPlatformAndCampaign}} clicks
 </p>
 <p align="center">
-    <a class="btn btn-success btn abut" href="" ng-click="getClicksByPlatform(platform.value.name)">Check clicks based on platform</a>
-    <a class="btn btn-info btn abut" href="" ng-click="getClicksByPlatformAndCampaign(platform.value.name,campaign.value.id)">Check clicks based on platform and campaign</a>
+    <button ng-disabled="!platform.value.name" class="btn btn-success btn abut" ng-click="getClicksByPlatform(platform.value.name)">Check clicks based on platform</button>
+    <button ng-disabled="!platform.value.name || !campaign.value.id" class="btn btn-info btn abut" ng-click="getClicksByPlatformAndCampaign(platform.value.name,campaign.value.id)">Check clicks based on platform and campaign</button>
 </p>
 
 

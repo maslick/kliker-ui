@@ -8,12 +8,39 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('DashboardCtrl', ['$scope','$http', 'settings', 'ngProgressFactory', function ($scope, $http, settings, ngProgressFactory) {
+  .controller('DashboardCtrl', [
+              '$scope',
+              '$http',
+              'settings',
+              'ngProgressFactory',
+              '$window',
+              function ($scope, $http, settings, ngProgressFactory, $window) {
+
       $scope.backend_addr = settings.getConfig().url;
       $scope.username = settings.getConfig().username;
       $scope.password = settings.getConfig().password;
 
       $scope.progressbar = ngProgressFactory.createInstance();
+      var Snarl = $window.Snarl;
+      var timeout = 8000;
+
+      var err404 = function () {
+          Snarl.addNotification({
+              title: "Cannot connect",
+              text: "Try again later or change backend URL",
+              icon: '<i class="glyphicon glyphicon-thumbs-down"></i>',
+              timeout: timeout
+          });
+      };
+
+      var err401 = function () {
+          Snarl.addNotification({
+              title: "Unauthorized",
+              text: "Change admin credentials in the prefs",
+              icon: '<i class="glyphicon glyphicon-thumbs-down"></i>',
+              timeout: timeout
+          });
+      };
 
       $http.defaults.headers.common.Authorization = 'Basic ' + btoa($scope.username + ":" + $scope.password);
 
@@ -21,12 +48,18 @@ angular.module('frontendApp')
       $scope.getAll = function () {
           $scope.progressbar.start();
           var url=$scope.backend_addr + "/_ah/api/linky/v1/campaign/getAll";
-          $http.get(url).success(function(data) {
-                angular.copy(data.items, $scope.list);
+          $http.get(url).then(function(response) {
+                angular.copy(response.data.items, $scope.list);
                 $scope.progressbar.complete();
-          })
-          .error(function(data) {
+          },
+          function(error) {
                 $scope.progressbar.complete();
+                if (error.status == "401") {
+                    err401();
+                }
+                else {
+                    err404();
+                }
           });
       };
 

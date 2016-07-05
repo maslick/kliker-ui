@@ -116,7 +116,7 @@ angular.module('frontendApp')
                 $scope.progressbar.complete();
                 if (response.data.status === "OK") {
                     $scope.getAll();
-                    notification.ok("Success","Campaign deleted");
+                    notification.ok("Success","Campaign deleted", '<i class="glyphicon glyphicon-remove"></i>');
                 }
           },function(error){
                 $scope.progressbar.complete();

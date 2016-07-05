@@ -10,7 +10,7 @@
 angular.module('frontendApp')
   .factory('notification', ['$window', function ($window) {
     var Snarl = $window.Snarl;
-    var timeout = 2000;
+    var timeout = 3000;
     var obj = {};
 
     var err404 = function () {
@@ -26,7 +26,7 @@ angular.module('frontendApp')
         Snarl.addNotification({
             title: "Unauthorized",
             text: "Change admin credentials in the prefs",
-            icon: '<i class="glyphicon glyphicon-thumbs-down"></i>',
+            icon: '<i class="glyphicon glyphicon-user"></i>',
             timeout: timeout
         });
     };

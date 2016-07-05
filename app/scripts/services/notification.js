@@ -31,11 +31,11 @@ angular.module('frontendApp')
         });
     };
 
-    var ok = function (title,text) {
+    var ok = function (title,text,icon) {
       Snarl.addNotification({
           title: title || "Success",
           text: text || "Operation completed",
-          icon: '<i class="glyphicon glyphicon-thumbs-up"></i>',
+          icon: icon || '<i class="glyphicon glyphicon-thumbs-up"></i>',
           timeout: timeout
       });
     };

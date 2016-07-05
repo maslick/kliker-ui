@@ -69,7 +69,7 @@ angular.module('frontendApp')
           $scope.progressbar.start();
           $http.post($scope.backend_addr + "/_ah/api/linky/v1/campaign/add", $scope.campaign).then(function(response) {
                 if (response.data.status === "OK") {
-                    notification.ok("Success","New campaign added");
+                    notification.ok("Success","New campaign added", '<i class="glyphicon glyphicon-plus"></i>');
                     $scope.progressbar.complete();
                     $scope.getAll();
                 }

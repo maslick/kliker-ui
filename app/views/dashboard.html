@@ -1,5 +1,5 @@
 <br>
-<p class="subheader" align="center">List all campaigns</p>
+<p class="subheader">1. List all campaigns</p>
 <input type="text" ng-model="search" class="form-control" placeholder="Search campaigns">
 <br>
 <br>
@@ -7,7 +7,7 @@
     <!-- {{list}} -->
 
     <div dir-paginate="item in list | filter:search | itemsPerPage: 10 as ha" pagination-id="all">
-            <span class="glyphicon glyphicon-remove" style="top:0.23em;padding-top:3px;" ng-click="deleteCampaign(item.id)"></span>
+            <span title="delete campaign" class="glyphicon glyphicon-remove" style="top:0.23em;padding-top:3px;cursor: pointer; cursor: hand;" ng-click="deleteCampaign(item.id)"></span>
             &nbsp;&nbsp;
             <kbd>{{item.id}}</kbd> &nbsp;&nbsp;
             {{item.redirect_url}}
@@ -31,7 +31,7 @@
 
 
 <br><br>
-<p class="subheader" align="center">Add campaign</p>
+<p class="subheader">2. Add campaign</p>
 <div class="input-group">
   <span class="input-group-addon">
       <span class="glyphicon glyphicon-globe"></span>
@@ -64,7 +64,7 @@
 <br>
 <br>
 <br><br>
-<p class="subheader" align="center">Filter campaings by platform</p>
+<p class="subheader">3. Filter campaings by platform</p>
 
 <div class="input-group">
   <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-record"></span></span>
